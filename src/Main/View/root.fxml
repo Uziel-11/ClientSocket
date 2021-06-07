@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.Controller">
    <children>
       <Button fx:id="btnSalir" layoutX="207.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#btnSalirOnMouseClicked" prefHeight="27.0" prefWidth="77.0" text="Salir" />
       <Button fx:id="btnConectar" layoutX="164.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#btnConectarOnMouseClicked" prefHeight="27.0" prefWidth="121.0" text="Abrir conexión" />
