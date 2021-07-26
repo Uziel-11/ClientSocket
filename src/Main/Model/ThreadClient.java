@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,7 +25,7 @@ public class ThreadClient extends Observable implements Runnable {
     Datosrecividos dat = new Datosrecividos();
     ObservableList<String> obd = FXCollections.observableArrayList();
     ObservableList<Datosrecividos> list = FXCollections.observableArrayList();
-    boolean aux = true;
+    boolean aux = false;
 
     public ThreadClient(Socket socket, Label log, TextArea mens, ComboBox conectados) {
         this.socket = socket;
@@ -32,6 +33,8 @@ public class ThreadClient extends Observable implements Runnable {
         this.textArea = mens;
         this.conectados = conectados;
     }
+
+    public ThreadClient(){}
 
     public void run() {
 
@@ -60,7 +63,7 @@ public class ThreadClient extends Observable implements Runnable {
                             dat.setId(datos.getNombre());
                             dat.setSms(array[1]);
                             list.add(dat);
-                            System.out.println(list);
+                            //System.out.println(list);
                             textArea.setText(list.get(0).getSms());
                             //name.clear();
                             obd.clear();
@@ -92,21 +95,21 @@ public class ThreadClient extends Observable implements Runnable {
                         }
                     }else {
                         System.out.println("Insertando en su respectiva celda --> "+st);
-
-
                         for (int i=0; i < list.size(); i++) {
                             if (list.get(i).getId().equals(array[0])) {
-                                String sms = list.get(i).getSms()+"\n"+array[0]+": "+array[2];
+                                String sms = list.get(i).getSms() + "\n" + array[0] + ": " + array[2];
                                 dat.setId(array[0]);
                                 dat.setSms(sms);
+                                list.add(i, dat);
                                 textArea.setText(list.get(i).getSms());
                                 aux = true;
                                 i = list.size();
-                            }else {
-                                if (i == list.size()-1 || aux ){
-                                    aux = false;
-                                }
                             }
+//                            }else {
+//                                if (i == list.size()-1 || aux ){
+//                                    aux = false;
+//                                }
+//                            }
 
                             if (aux == false){
                                 dat.setId(array[0]);
@@ -127,6 +130,20 @@ public class ThreadClient extends Observable implements Runnable {
             }while (!st.equals("FIN"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public void misms(String misms, String usuario){
+        for (int i=0; i<list.size(); i++){
+            if (list.get(i).getId().equals(usuario)){
+                String sms = list.get(i).getSms()+"\n"+misms;
+                dat.setId(usuario);
+                dat.setSms(sms);
+                list.add(i, dat);
+                textArea.setText(list.get(i).getSms());
+                i = list.size();
+            }
         }
 
     }

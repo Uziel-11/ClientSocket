@@ -31,7 +31,7 @@ public class IngresarID {
             Datos datos = new Datos();
             datos.setNombre(id);
             datos.setIp("localhost");
-            datos.setPuerto(3001);
+            datos.setPuerto(3000);
             //btnConectarOnMouseClicked();
             Stage st;
             Parent root = FXMLLoader.load(getClass().getResource("../View/vistaPrincipal.fxml"));

@@ -208,6 +208,8 @@ public class Controller implements  Observer, Initializable {
             try {
                 bufferDeSalida.writeUTF(datos.getNombre()+":"+usuarios.getValue()+":"+txtEnviar.getText());
                 //bufferDeSalida.writeUTF("30");
+                ThreadClient sms = new ThreadClient();
+                sms.misms("Tu: "+txtEnviar.getText(), usuarios.getValue());
                 bufferDeSalida.flush();
                 txtEnviar.clear();
             } catch (IOException e) {
